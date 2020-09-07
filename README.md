@@ -1,1 +1,1 @@
-# InvokeDB Node
+# InvokeDB JavaScript Client
