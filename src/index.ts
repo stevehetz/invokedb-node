@@ -62,6 +62,7 @@ export class InvokeDBClient {
   private _baseUrl;
   private _apiKey;
   constructor(private _config) {
+    console.log(this._config);
     const { baseUrl, apiKey } = this._config;
     if (!apiKey && typeof apiKey !== 'string') {
       throw 'Must provide a valid api key';
