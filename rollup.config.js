@@ -7,23 +7,30 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: 'es'
+      format: 'cjs'
     },
     {
       file: pkg.module,
       format: 'es'
     },
     {
-      file: pkg.browser,
+      file: 'bundle/iife/invokedb.js',
       format: 'iife',
       name: 'invokedb'
+    },
+    {
+      file: 'bundle/iife/invokedb.min.js',
+      format: 'iife',
+      name: 'invokedbmin',
+      plugins: [
+        terser()
+      ]
     }
   ],
   external: [...Object.keys(pkg.dependencies || {})],
   plugins: [
     typescript({
       typescript: require('typescript')
-    }),
-    // terser()
+    })
   ]
 };

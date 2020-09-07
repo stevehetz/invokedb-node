@@ -2,9 +2,8 @@
   "name": "invokedb",
   "version": "1.0.3",
   "description": "InvokeDB javascript client",
-  "main": "bundle/invokedb-cjs.js",
-  "module": "bundle/invokedb-es.js",
-  "browser": "bundle/invokedb-browser.js",
+  "main": "bundle/cjs/invokedb.js",
+  "module": "bundle/es/invokedb.js",
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -r bundle
 npm run build
 git add -A
 git commit -m $1
