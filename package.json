@@ -1,5 +1,5 @@
 {
-  "name": "invokedb-node",
+  "name": "invokedb",
   "version": "1.0.0",
   "description": "InvokeDB javascript client",
   "main": "index.js",
