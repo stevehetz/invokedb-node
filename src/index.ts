@@ -41,7 +41,7 @@ class InvokeDBTableClient {
   }*/
 
   async get(params: IGetParams) {
-    const { skip, limit, sort } = params;
+    const { skip, limit, sort, filter } = params;
     const headers = { Authorization: `Bearer ${this._apiKey}` };
 
     let urlQuery = `table=${this._tableName}`;
@@ -53,7 +53,7 @@ class InvokeDBTableClient {
       urlQuery += `&sort_dir=${sort.sortDir}`;
     }
 
-    return params.filter
+    return filter
       ? await axios.post(`${this._baseUrl}/search?${urlQuery}`, filter, { headers })
       : await axios.get(`${this._baseUrl}/get?${urlQuery}`, { headers });
   }
@@ -63,7 +63,6 @@ export class InvokeDBClient {
   private _baseUrl;
   private _apiKey;
   constructor(private _config) {
-    console.log(this._config);
     const { baseUrl, apiKey } = this._config;
     if (!apiKey && typeof apiKey !== 'string') {
       throw 'Must provide a valid api key';
