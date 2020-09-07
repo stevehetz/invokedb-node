@@ -21,25 +21,6 @@ export interface IGetParams {
 class InvokeDBTableClient {
   constructor(private _baseUrl, private _apiKey, private _tableName) {}
 
-  /*async get(params: IGetParams, filter?: any) {
-    const limit = 10;
-    const headers = { Authorization: `Bearer ${this._apiKey}` };
-
-    let url = `https://api.invokedb.com/v1/get?table=${this._tableName}`;
-
-    let skip = 0;
-    url += `&skip=${skip}&limit=${limit}`;
-    let res = await axios.get(url, { headers });
-    console.log(res);
-    // { data: { count: 200, data: [...] } }
-
-    skip = skip + limit;
-    url += `&skip=${skip}&limit=${limit}`;
-    res = await axios.get(url, { headers });
-    console.log(res);
-    // { data: { count: 200, data: [...] } }
-  }*/
-
   async get(params: IGetParams) {
     const { skip, limit, sort, filter } = params;
     const headers = { Authorization: `Bearer ${this._apiKey}` };
