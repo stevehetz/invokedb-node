@@ -1,6 +1,6 @@
 {
   "name": "invokedb",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "InvokeDB javascript client",
   "main": "bundle/cjs/invokedb.js",
   "module": "bundle/es/invokedb.js",
