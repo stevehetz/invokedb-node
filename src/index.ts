@@ -14,6 +14,7 @@ export interface IGetParams {
   skip?: number;
   limit?: number;
   sort?: ISortParam;
+  filter?: any;
 }
 
 
@@ -39,7 +40,7 @@ class InvokeDBTableClient {
     // { data: { count: 200, data: [...] } }
   }*/
 
-  async get(params: IGetParams, filter?: any) {
+  async get(params: IGetParams) {
     const { skip, limit, sort } = params;
     const headers = { Authorization: `Bearer ${this._apiKey}` };
 
@@ -52,7 +53,7 @@ class InvokeDBTableClient {
       urlQuery += `&sort_dir=${sort.sortDir}`;
     }
 
-    return filter
+    return params.filter
       ? await axios.post(`${this._baseUrl}/search?${urlQuery}`, filter, { headers })
       : await axios.get(`${this._baseUrl}/get?${urlQuery}`, { headers });
   }
