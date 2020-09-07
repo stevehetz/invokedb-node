@@ -62,12 +62,12 @@ export class InvokeDBClient {
   private _baseUrl;
   private _apiKey;
   constructor(private _config) {
-    const { BASE_URL, API_KEY } = this._config;
-    if (!API_KEY && typeof API_KEY !== 'string') {
+    const { baseUrl, apiKey } = this._config;
+    if (!apiKey && typeof apiKey !== 'string') {
       throw 'Must provide a valid api key';
     }
-    this._baseUrl = BASE_URL || 'https://api.invokedb.com/v1';
-    this._apiKey = API_KEY;
+    this._baseUrl = baseUrl || 'https://api.invokedb.com/v1';
+    this._apiKey = apiKey;
   }
 
   table(tableName) {
