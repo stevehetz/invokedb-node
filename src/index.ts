@@ -19,7 +19,7 @@ export interface IGetParams {
 
 
 class InvokeDBTableClient {
-  constructor(private _baseUrl, private _apiKey, private _tableName) {}
+  constructor(private _baseUrl: string, private _apiKey: string, private _tableName: string) {}
 
   async get(params: IGetParams) {
     const { skip, limit, sort, filter } = params;
@@ -43,7 +43,7 @@ class InvokeDBTableClient {
 export class InvokeDBClient {
   private _baseUrl;
   private _apiKey;
-  constructor(private _config) {
+  constructor(private _config: any) {
     const { baseUrl, apiKey } = this._config;
     if (!apiKey && typeof apiKey !== 'string') {
       throw 'Must provide a valid api key';
@@ -52,7 +52,7 @@ export class InvokeDBClient {
     this._apiKey = apiKey;
   }
 
-  table(tableName) {
+  table(tableName: string) {
     return new InvokeDBTableClient(this._baseUrl, this._apiKey, tableName);
   }
 }

@@ -5,6 +5,7 @@
   "main": "bundle/cjs/invokedb.js",
   "module": "bundle/es/invokedb.js",
   "scripts": {
+    "start": "rollup --watch --config rollup.config.js",
     "build": "rollup --config rollup.config.js"
   },
   "repository": {
@@ -21,6 +22,9 @@
     "axios": "^0.20.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "rollup": "^2.26.10",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.27.2",
