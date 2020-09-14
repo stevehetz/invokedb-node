@@ -97,16 +97,7 @@ class InvokeDBFind {
 class InvokeDBTableClient {
   constructor(private _baseUrl: string, private _apiKey: string, private _tableName: string) { }
   
-  /*async findOne(params?: IGetParams) {
-    const res = await this.find(params);
-    if (res && res.data && res.data.data && res.data.data[0]) {
-      return res.data.data[0];
-    }
-
-    return undefined;
-  }*/
-
-  private createFindClient() {
+  private _createFindClient() {
     return new InvokeDBFind(
       this._baseUrl,
       this._apiKey,
@@ -115,31 +106,31 @@ class InvokeDBTableClient {
   }
 
   count() {
-    return this.createFindClient().find().count();
+    return this._createFindClient().find().count();
   }
 
   find(filter?: any) {
-    return this.createFindClient().find(filter);
+    return this._createFindClient().find(filter);
   }
 
   findOne(filter?: any) {
-    return this.createFindClient().findOne(filter).exec();
+    return this._createFindClient().findOne(filter).exec();
   }
 
   limit(value: number) {
-    return this.createFindClient().limit(value);
+    return this._createFindClient().limit(value);
   }
 
   skip(value: number) {
-    return this.createFindClient().skip(value);
+    return this._createFindClient().skip(value);
   }
 
   sortBy(value: string) {
-    return this.createFindClient().sortBy(value);
+    return this._createFindClient().sortBy(value);
   }
 
   sortDir(value: string) {
-    return this.createFindClient().sortDir(value);
+    return this._createFindClient().sortDir(value);
   }
 
   insert() {
