@@ -43,23 +43,30 @@ class InvokeDBFind {
     return this;
   }
 
-  find(filter: any) {
+  find(filter?: any) {
     this._filter = filter;
     return this;
   }
 
-  findOne(filter: any) {
+  findOne(filter?: any) {
     this._filter = filter;
     this._findOne = true;
     return this;
   }
 
+  async count() {
+    const res = await this.exec();
+    return res.count;
+  }
+
   async exec() {
     const headers = { Authorization: `Bearer ${this._apiKey}` };
+    
+    this._limit = typeof this._limit === 'number' ? this._limit : DEFAULT_LIMIT;
 
     let urlQuery = `table=${this._tableName}`;
     urlQuery += `&skip=${this._skip || 0}`;
-    urlQuery += `&limit=${this._limit || DEFAULT_LIMIT}`;
+    urlQuery += `&limit=${this._limit}`;
 
     if (this._sortBy) {
       urlQuery += `&sort_by=${this._sortBy}`;
@@ -107,6 +114,10 @@ class InvokeDBTableClient {
     );
   }
 
+  count() {
+    return this.createFindClient().find().count();
+  }
+
   find(filter?: any) {
     return this.createFindClient().find(filter);
   }
@@ -131,15 +142,11 @@ class InvokeDBTableClient {
     return this.createFindClient().sortDir(value);
   }
 
-  count() {
-
-  }
-
   insert() {
 
   }
 
-   update() {
+  update() {
 
   }
 
