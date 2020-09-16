@@ -111,6 +111,7 @@ class InvokeDBTableClient {
   }
 
   count() {
+    console.log('updates');
     return this._createFindClient().find().count();
   }
 
