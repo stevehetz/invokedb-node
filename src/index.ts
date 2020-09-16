@@ -19,14 +19,12 @@ const DEFAULT_LIMIT = 10;
 const DEFAULT_SORT_DIR = 'asc';
 
 class InvokeDBFind {
-  private _filter: any;
   private _skip: number;
   private _limit: number;
   private _sortBy: string;
   private _sortDir: string;
-  private _findOne = false;
 
-  constructor(private _baseUrl: string, private _apiKey: string, private _tableName: string) { }
+  constructor(private _baseUrl: string, private _apiKey: string, private _tableName: string, private _filter?: any, private _findOne: boolean = false) { }
 
   limit(value: number) {
     this._limit = value;
@@ -45,17 +43,6 @@ class InvokeDBFind {
 
   sortDir(value: string) {
     this._sortDir = value;
-    return this;
-  }
-
-  find(filter?: any) {
-    this._filter = filter;
-    return this;
-  }
-
-  findOne(filter?: any) {
-    this._filter = filter;
-    this._findOne = true;
     return this;
   }
 
@@ -102,40 +89,26 @@ class InvokeDBFind {
 export class InvokeDBTable {
   constructor(private _baseUrl: string, private _apiKey: string, private _tableName: string) { }
   
-  private _createFindClient() {
+  private _createFindClient(filter?: any, findOne = false) {
     return new InvokeDBFind(
       this._baseUrl,
       this._apiKey,
-      this._tableName
+      this._tableName,
+      filter,
+      findOne
     );
   }
 
   count() {
-    return this._createFindClient().find().count();
+    return this._createFindClient().count();
   }
 
   find(filter?: any) {
-    return this._createFindClient().find(filter);
+    return this._createFindClient(filter);
   }
 
   findOne(filter?: any) {
-    return this._createFindClient().findOne(filter).exec();
-  }
-
-  limit(value: number) {
-    return this._createFindClient().limit(value);
-  }
-
-  skip(value: number) {
-    return this._createFindClient().skip(value);
-  }
-
-  sortBy(value: string) {
-    return this._createFindClient().sortBy(value);
-  }
-
-  sortDir(value: string) {
-    return this._createFindClient().sortDir(value);
+    return this._createFindClient(filter, true);
   }
 
   async insert(data: any) {
