@@ -99,7 +99,7 @@ class InvokeDBFind {
 }
 
 
-class InvokeDBTableClient {
+export class InvokeDBTable {
   constructor(private _baseUrl: string, private _apiKey: string, private _tableName: string) { }
   
   private _createFindClient() {
@@ -148,7 +148,7 @@ class InvokeDBTableClient {
     return await axios.post(url, data, { headers });
   }
 
-  validateInsert(data: any) {
+  private validateInsert(data: any) {
     if (typeof data === 'number' || typeof data === 'string' || typeof data === 'boolean' || data === null || data === undefined) {
       throw 'Insert payload must be an object or an array';
     }
@@ -164,7 +164,7 @@ class InvokeDBTableClient {
      return await axios.put(url, data, { headers });
   }
 
-  validateUpdate(data: any) {
+  private validateUpdate(data: any) {
     if (typeof data === 'number' || typeof data === 'string' || typeof data === 'boolean' || data === null || data === undefined) {
       throw 'Update payload must be an object or an array';
     }
@@ -199,6 +199,6 @@ export class InvokeDBClient {
   }
 
   table(tableName: string) {
-    return new InvokeDBTableClient(this._baseUrl, this._apiKey, tableName);
+    return new InvokeDBTable(this._baseUrl, this._apiKey, tableName);
   }
 }
