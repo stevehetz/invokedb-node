@@ -10,6 +10,11 @@ export interface ISortParam {
   sortDir: SORT_DIR;
 }
 
+export interface IClientConfig {
+  apiKey: string;
+  baseUrl?: string;
+}
+
 const DEFAULT_LIMIT = 10;
 const DEFAULT_SORT_DIR = 'asc';
 
@@ -184,7 +189,7 @@ export class InvokeDBClient {
   private _baseUrl: string;
   private _apiKey: string;
   
-  constructor(private _config: any) {
+  constructor(private _config: IClientConfig) {
     const { baseUrl, apiKey } = this._config;
     if (!apiKey && typeof apiKey !== 'string') {
       throw 'Must provide a valid api key';
