@@ -3,6 +3,7 @@
   "version": "1.0.11",
   "description": "InvokeDB javascript client",
   "main": "bundle/cjs/invokedb.js",
+  "types": "bundle/cjs/index.d.js",
   "module": "bundle/es/invokedb.js",
   "scripts": {
     "start": "rollup --watch --config rollup.config.js",

@@ -133,16 +133,50 @@ class InvokeDBTableClient {
     return this._createFindClient().sortDir(value);
   }
 
-  insert() {
-
+  async insert(data: any) {
+    this.validateInsert(data);
+    if (!Array.isArray(data) && Object.keys(data).length > 0) {
+      data = [data];
+    }
+    const headers = { Authorization: `Bearer ${this._apiKey}` };
+    const url = `${this._baseUrl}/create?table=${this._tableName}`;
+    return await axios.post(url, data, { headers });
   }
 
-  update() {
-
+  validateInsert(data: any) {
+    if (typeof data === 'number' || typeof data === 'string' || typeof data === 'boolean' || data === null || data === undefined) {
+      throw 'Insert payload must be an object or an array';
+    }
   }
 
-  delete() {
+  async update(data: any) {
+     this.validateUpdate(data);
+     if (!Array.isArray(data) && Object.keys(data).length > 0) {
+       data = [data];
+     }
+     const headers = { Authorization: `Bearer ${this._apiKey}` };
+     const url = `${this._baseUrl}/update?table=${this._tableName}`;
+     return await axios.put(url, data, { headers });
+  }
 
+  validateUpdate(data: any) {
+    if (typeof data === 'number' || typeof data === 'string' || typeof data === 'boolean' || data === null || data === undefined) {
+      throw 'Update payload must be an object or an array';
+    }
+  }
+  
+
+  async delete(data: string | Array<string>) {
+    if (typeof data === 'string') {
+      data = [data]
+    }
+    if (Array.isArray(data)) {
+      const headers = { Authorization: `Bearer ${this._apiKey}` };
+      const url = `${this._baseUrl}/delete?table=${this._tableName}`;
+      return await axios.post(url, data, { headers });
+    }
+
+    return null;
   }
 }
 
