@@ -6,8 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 const globals = {
-  axios: 'axios',
-  tslib: 'tslib'
+  axios: 'axios'
 }
 
 export default {
@@ -38,7 +37,7 @@ export default {
       globals
     }
   ],
-  external: ['tslib'],
+  external: [],
   plugins: [
     resolve({ jsnext: true, preferBuiltins: true, browser: true }),
     json(),
@@ -50,7 +49,7 @@ export default {
     commonjs({
       // non-CommonJS modules will be ignored, but you can also
       // specifically include/exclude files
-      include: ['./src/index.js', 'node_modules/**'], // Default: undefined
+      include: ['./src/index.js', 'node_modules/\*\*'], // Default: undefined
 
       // if true then uses of `global` won't be dealt with by this plugin
       ignoreGlobal: false, // Default: false
