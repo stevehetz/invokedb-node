@@ -32,7 +32,7 @@ export default {
     {
       file: 'bundle/iife/invokedb.min.js',
       format: 'iife',
-      name: 'invokedbmin',
+      name: 'invokedb',
       plugins: [terser()],
       globals
     }
