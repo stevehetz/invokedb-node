@@ -24,13 +24,13 @@ export default {
       globals
     },
     {
-      file: 'bundle/iife/invokedb.js',
+      file: 'dist/invokedb.js',
       format: 'iife',
       name: 'invokedb',
       globals
     },
     {
-      file: 'bundle/iife/invokedb.min.js',
+      file: 'dist/invokedb.min.js',
       format: 'iife',
       name: 'invokedb',
       plugins: [terser()],
