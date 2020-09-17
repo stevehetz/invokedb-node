@@ -1,6 +1,7 @@
 import json from '@rollup/plugin-json';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
@@ -39,6 +40,9 @@ export default {
   ],
   external: [],
   plugins: [
+    replace({
+      'Microsoft Corporation': 'InvokeDB, LLC'
+    }),
     resolve({ jsnext: true, preferBuiltins: true, browser: true }),
     json(),
     typescript({
