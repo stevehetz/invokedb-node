@@ -5,6 +5,7 @@
   "main": "bundle/cjs/invokedb.js",
   "types": "bundle/cjs/index.d.js",
   "module": "bundle/es/invokedb.js",
+  "browser": "dist/invokedb.min.js",
   "scripts": {
     "start": "rollup --watch --config rollup.config.js",
     "build": "rollup --config rollup.config.js"
